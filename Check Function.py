@@ -22,9 +22,20 @@ class character:
         return self.nickname, self.weapons, self.weaknesses
 
 
-def check_equipment(Task):
+def check_equipment(player, taskL, status): 
     print("This functions is to check if items are collected and their condition")
-
+    weaponL = player.get_weapons()
+    missed =0
+    for item in range(len(taskL)):
+        if taskL[item] not in weaponL:
+           print('{} is not ready.'.format(taskL[item]))
+           missed = missed+1
+    if missed == 0:
+        print('All items are ready for carrying out the task')
+    if status in player.get_weaknesses():
+        print("Player's {} condition is not allowed.'.format(status))
+    else:
+        print('Player is good condition to carrying out the task.')
 
 player1 = character('', '', '')
 player1.nickname = 'Dragon Slayer'
@@ -60,5 +71,5 @@ if option == "3":
 # display the option menu
 # input option for task
 
-# call check equipment
-check_equipment('task1')
+# call check equipment, you need to pass the following parameters.
+check_equipment(player1, task, not_allowed_state)
