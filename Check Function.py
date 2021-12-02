@@ -9,19 +9,24 @@ class character:
         self.weapons = weapons
         self.weaknesses = weaknesses
 
-    def get_model(self):
+    def get_nickname(self):
         return self.nickname
 
-    def get_year(self):
+    def get_weapons(self):
         return self.weapons
 
-    def get_color(self):
+    def get_weaknesses(self):
         return self.weaknesses
 
     def profile(self):
         return self.nickname, self.weapons, self.weaknesses
 
+'''
+The following functionhas parameters: player(character object), taskL(item list), status(not allowed state)
+missed variable is for counting the number the player doesn't have for performing the chosen task.
+Whenever the item is not found in the player's weapons list, the missed will be incremented.
 
+'''
 def check_equipment(player, taskL, status): 
     print("This functions is to check if items are collected and their condition")
     weaponL = player.get_weapons()
@@ -30,13 +35,22 @@ def check_equipment(player, taskL, status):
         if taskL[item] not in weaponL:
            print('{} is not ready.'.format(taskL[item]))
            missed = missed+1
+    '''
+    Player has all items to carry out the task if missed is still zero after for loop is fully iterated.
+    '''
     if missed == 0:
         print('All items are ready for carrying out the task')
+    '''
+    If the not_allowed_state is not found in the player's weaknesses list,
+    then the player is Ok condition for performing the task.
+    '''
     if status in player.get_weaknesses():
-        print("Player's {} condition is not allowed.'.format(status))
+        print("Player's {} condition is not allowed.".format(status))
     else:
         print('Player is good condition to carrying out the task.')
 
+        
+        
 player1 = character('', '', '')
 player1.nickname = 'Dragon Slayer'
 player1.weapons = ['pan', 'paper', 'idea', 'rope', 'groceries']
